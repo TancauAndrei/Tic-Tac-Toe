@@ -1,162 +1,89 @@
-*, *::after, *::before {
-    box-sizing: border-box;
+:root {
+    --bg: #0b1220;
+    --card: #121a2c;
+    --text: #e8eefc;
+    --x: #7aa7ff;
+    --o: #ff7aa7;
 }
 
-:root {
-    --cell-size:100px;
-    --mark-size: calc(var(--cell-size) * 0.9);
+* {
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
 }
 
 body {
     margin: 0;
-}
-
-.center {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.board {
-    height: 100vh;
-    width: 100vh;
-    display: grid;
+.app {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 16px;
+    width: 320px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
     justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(3, auto);
+}
+
+select, button {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.status {
+    margin: 10px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
 }
 
 .cell {
-    width: var(--cell-size);
-    height: var(--cell-size);
-    border: .2rem solid black;
-    border-radius: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    height: 90px;
+    font-size: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     cursor: pointer;
 }
 
-.cell.x, 
-.cell.circle {
-    cursor: not-allowed;
+.cell[data-v="X"] { color: var(--x); }
+.cell[data-v="O"] { color: var(--o); }
+
+body.theme-classic {
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --text: #111;
+    --x: #2563eb;
+    --o: #dc2626;
 }
 
-.cell:first-child,
-.cell:nth-child(2),
-.cell:nth-child(3) {
-    border-top: none;
-}
-
-.cell:nth-child(3n + 1) {
-    border-left: none;
-}
-
-.cell:nth-child(3n + 3) {
-    border-right: none;
-}
-
-.cell:last-child,
-.cell:nth-child(8),
-.cell:nth-child(7) {
-    border-bottom: none;
-}
-
-.cell.x::before,
-.cell.x::after,
-.cell.circle::before {
-    background-color: black;
-}
-
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.circle .cell:not(.x):not(.circle):hover::before {
-    background-color: rgb(199, 199, 200);
-}
-
-.cell.x::before,
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
-    content: "";
-    position: absolute;
-    width: calc(var(--mark-size) * .13);
-    height: calc(var(--mark-size) * 1.2);
-    /* background-color: black; */
-    /* height: var(--mark-size); */
-}
-
-.cell.x::before,
-.board.x .cell:not(.x):not(.circle):hover::before {
-    transform: rotate(45deg);
-}
-
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
-    transform: rotate(-45deg);
-}
-
-
-.cell.circle::before,
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-}
-
-.cell.circle::before,
-.board.circle .cell:not(.x):not(.circle):hover::before {
-    height: var(--mark-size);
-    width: var(--mark-size);
-    /* background-color: black; */
-}
-
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::after {
-    height: calc(var(--mark-size) * .7);
-    width: calc(var(--mark-size) * .7);
-    background-color:white;
-}
-
-/* !Winning message! */
-.winning-message {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, .9);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 5rem;
-}
-
-.winning-message button {
-    padding: 1rem 3rem;
-    font-size: 2rem;
-    border-radius: 10px;
-    border: 3px solid transparent;
-    background-color: #fff;
-    color: black;
-    cursor: pointer;
-    transition: 0.3s all ease;
-}
-
-.winning-message button:hover {
-    border: 3px solid rgb(134, 134, 134);
-    background-color: black;
-    color: #fff;
-}
-
-.winning-message.show {
-    display: flex;
+body.theme-neon {
+    --bg: #050505;
+    --card: #0f0f0f;
+    --text: #ffffff;
+    --x: #39ff14;
+    --o: #ff00ff;
 }
