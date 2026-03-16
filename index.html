@@ -4,38 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <script src="./index.js" defer></script>
+    <title>Tic Tac Toe - Start</title>
 </head>
 
 <body>
-<div class="index">
-    <div class="gamePage">
-        <div class="gameMode">
-            <select id="mode">
-                <option value="pvp">Player vs Player</option>
-                <option value="pvc">Player vs Computer</option>
-            </select>
-        </div>
-        <div class="sexApeal">
-            <select>
-                <option value="classic">Classic</option>
-                <option value="modern">Modern</option>
-                <option value="futuristic">Futuristic</option>
-            </select>
-        </div>
-        <div class="infoMessage"> Randul lui <strong id="turn">X</strong></div>
-        <div class="grid">
-            <div class="cell" data-i="1">1</div>
-            <div class="cell" data-i="2">2</div>
-            <div class="cell" data-i="3">3</div>
-            <div class="cell" data-i="4">4</div>
-            <div class="cell" data-i="5">5</div>
-            <div class="cell" data-i="6">6</div>
-            <div class="cell" data-i="7">7</div>
-            <div class="cell" data-i="8">8</div>
-            <div class="cell" data-i="9">9</div>
-        </div>
+<nav class="navbar">
+    <div class="nav-brand">🎮 Tic Tac Toe</div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link active">New Game</a>
+        <a href="game.html" class="nav-link">Game</a>
+        <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+    </div>
+</nav>
 
+<div class="index index-start">
+    <div id="playerModal" class="modal modal-index">
+        <form id="startGameForm" class="modal-content">
+            <h2 class="modal-title">Bine ai venit!</h2>
+            <div class="players-container">
+                <div class="player-input-box player-x">
+                    <div class="player-icon">X</div>
+                    <label for="player1">Jucător stânga</label>
+                    <input type="text" id="player1" placeholder="Numele jucătorului X" maxlength="20">
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="player-input-box player-o">
+                    <div class="player-icon">O</div>
+                    <label for="player2">Jucător dreapta</label>
+                    <input type="text" id="player2" placeholder="Numele jucătorului O" maxlength="20">
+                </div>
+            </div>
+            <button id="startGameBtn" type="submit" class="btn-fight">Fight</button>
+        </form>
     </div>
 </div>
 </body>
